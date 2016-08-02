@@ -1,0 +1,30 @@
+#调度的默认配置文件
+monkey:
+#入口类
+  input.class.main:
+    - name: server
+      class: com.ccindex.main.ServerSingle
+    - name: client
+      class: com.ccindex.main.Client
+    - name: check
+      class: com.ccindex.main.Check
+      
+#尝试次数及每次间隔时间,默认值    
+  input.class.retry:
+    - name: server
+      retry: 10
+      timeout: 600000
+    - name: client
+      retry: 100000
+      timeout: 600000
+    - name: heart
+      retry: 60
+      timeout: 5000
+#输出日志记录的目录      
+  output.record.dir: /home/yml/Desktop/monkey-master
+#服务器端IP及端口,随即连接2个,3个容易报错
+  com.yml.zkScheduler.zookeeper.server: 172.0.0.1:2181,172.0.0.1:2182,172.0.0.1:2183
+#客户端用于运行命令的shell脚本
+  client.shell.path: 
+#调试信息外部log4j配置路径
+  log4j.conf.file: /home/yml/IdeaProjects/monkey/conf/configure.properties
